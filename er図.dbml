@@ -1,0 +1,53 @@
+Table users {
+  id int [pk, increment]
+  name varchar
+  email varchar
+  password varchar
+  created_at datetime
+  updated_at datetime
+}
+
+Table profiles {
+  id int [pk, increment]
+  user_id int [ref: > users.id]
+  nickname varchar
+  icon varchar
+  created_at datetime
+  updated_at datetime
+}
+
+Table items {
+  id int [pk, increment]
+  user_id int [ref: > users.id]
+  category_id int [ref: > categories.id]
+  name varchar
+  price int
+  description text
+  created_at datetime
+  updated_at datetime
+}
+
+Table categories {
+  id int [pk, increment]
+  name varchar
+}
+
+Table purchases {
+  id int [pk, increment]
+  user_id int [ref: > users.id]
+  item_id int [ref: > items.id]
+  postal_code varchar
+  address varchar
+  building varchar
+  created_at datetime
+  updated_at datetime
+}
+
+Table comments {
+  id int [pk, increment]
+  user_id int [ref: > users.id]
+  item_id int [ref: > items.id]
+  content text
+  created_at datetime
+  updated_at datetime
+}
